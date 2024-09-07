@@ -11,6 +11,7 @@ urlpatterns = [
     path("practical/", practical, name="practical"),
     path("independent/", independent, name="independent"),
     path("presentation/", presentation, name="presentation"),
-    path("video/", video, name="video")
+    path("video/", video, name="video"),
+    path('venue_pdf/<int:pk>/', venue_pdf, name='venue_pdf')
 ]
 

@@ -1,5 +1,7 @@
 from django.shortcuts import render
 from main.models import *
+from baseschool.settings import BASE_DIR
+from django.http import FileResponse, HttpResponse
 
 
 
@@ -9,12 +11,14 @@ def index(request):
     presentation = Presentation.objects.all().order_by('-id')[:3]
     video = Video.objects.all().order_by('-id')[:3]
     independent = Independent.objects.all().order_by('-id')[:3]
+    pdf = Pdf.objects.all()
     ctxx = {
         "subject": subject,
         'practical': practical,
         'presentation': presentation,
         "video": video,
-        'independent': independent
+        'independent': independent,
+        'pdf': pdf
     }
     return render(request, 'main/index.html', ctxx)
 
@@ -76,3 +80,17 @@ def video(request):
     }
 
     return render(request, "main/videodars.html", ctx)
+
+
+
+
+
+
+def venue_pdf(request, pk):
+    vanue = Pdf.objects.get(pk=pk)
+
+    absolute_url = str(BASE_DIR) + vanue.pdf.url
+    with open(absolute_url, 'rb') as pdf:
+        response = HttpResponse(pdf.read(), content_type="application/pdf")
+        response['Content-Disposition'] = "attachment; filename" + vanue.pdf.name
+        return response
