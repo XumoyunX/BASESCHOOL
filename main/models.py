@@ -5,23 +5,22 @@ from django.core.validators import FileExtensionValidator
 
 
 class Subject(models.Model):
-    ELEMENTARY = "E"
-    ADDITIONAL = "A"
-    ACCOUNT_TYPE_CHOICES = {
-        ELEMENTARY: "Boshlang'ich ",
-        ADDITIONAL: "Qo'shimcha ",
+    ELEMENTARY = 0
+    ADDITIONAL = 1
 
-    }
+
     img = models.ImageField(upload_to='img/')
     name = models.CharField(max_length=50)
     text = models.TextField()
     registered_on = models.DateField(auto_now_add=True)
 
-    account_type = models.CharField(
-        max_length=1,
-        choices=ACCOUNT_TYPE_CHOICES,
-        default=ELEMENTARY,
-    )
+    account_type = models.SmallIntegerField(choices=(
+        (ELEMENTARY, "Boshlang'ich"),
+        (ADDITIONAL, "Qo'shimcha ")
+
+    ), blank=True, null=True)
+
+
 
     def __str__(self):
         return self.name
@@ -35,23 +34,19 @@ class Subject(models.Model):
 
 
 class Practical(models.Model):
-    ELEMENTARY = "E"
-    ADDITIONAL = "A"
-    ACCOUNT_TYPE_CHOICES = {
-        ELEMENTARY: "Boshlang'ich ",
-        ADDITIONAL: "Qo'shimcha ",
+    ELEMENTARY = 0
+    ADDITIONAL = 1
 
-    }
     img = models.ImageField(upload_to='img/')
     name = models.CharField(max_length=50)
     text = models.TextField()
     registered_on = models.DateField(auto_now_add=True)
 
-    account_type = models.CharField(
-        max_length=1,
-        choices=ACCOUNT_TYPE_CHOICES,
-        default=ELEMENTARY,
-    )
+    account_type = models.SmallIntegerField(choices=(
+        (ELEMENTARY, "Boshlang'ich"),
+        (ADDITIONAL, "Qo'shimcha ")
+
+    ), blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -68,23 +63,19 @@ class Practical(models.Model):
 
 
 class Independent(models.Model):
-    ELEMENTARY = "E"
-    ADDITIONAL = "A"
-    ACCOUNT_TYPE_CHOICES = {
-        ELEMENTARY: "Boshlang'ich ",
-        ADDITIONAL: "Qo'shimcha ",
+    ELEMENTARY = 0
+    ADDITIONAL = 1
 
-    }
     img = models.ImageField(upload_to='img/')
     name = models.CharField(max_length=50)
     text = models.TextField()
     registered_on = models.DateField(auto_now_add=True)
 
-    account_type = models.CharField(
-        max_length=1,
-        choices=ACCOUNT_TYPE_CHOICES,
-        default=ELEMENTARY,
-    )
+    account_type = models.SmallIntegerField(choices=(
+        (ELEMENTARY, "Boshlang'ich"),
+        (ADDITIONAL, "Qo'shimcha ")
+
+    ), blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -97,24 +88,19 @@ class Independent(models.Model):
 
 
 class Presentation(models.Model):
-    ELEMENTARY = "E"
-    ADDITIONAL = "A"
-    ACCOUNT_TYPE_CHOICES = {
-        ELEMENTARY: "Boshlang'ich ",
-        ADDITIONAL: "Qo'shimcha ",
+    ELEMENTARY = 0
+    ADDITIONAL = 1
 
-    }
     img = models.ImageField(upload_to='img/')
     name = models.CharField(max_length=50)
     text = models.TextField()
     registered_on = models.DateField(auto_now_add=True)
 
-    account_type = models.CharField(
-        max_length=1,
-        choices=ACCOUNT_TYPE_CHOICES,
-        default=ELEMENTARY,
-    )
+    account_type = models.SmallIntegerField(choices=(
+        (ELEMENTARY, "Boshlang'ich"),
+        (ADDITIONAL, "Qo'shimcha ")
 
+    ), blank=True, null=True)
     def __str__(self):
         return self.name    
 
@@ -125,23 +111,19 @@ class Presentation(models.Model):
 
 
 class Video(models.Model):
-    ELEMENTARY = "E"
-    ADDITIONAL = "A"
-    ACCOUNT_TYPE_CHOICES = {
-        ELEMENTARY: "Boshlang'ich ",
-        ADDITIONAL: "Qo'shimcha ",
+    ELEMENTARY = 0
+    ADDITIONAL = 1
 
-    }
     video = models.FileField(upload_to='videos_uploaded')
     name = models.CharField(max_length=50, verbose_name="youtube url joylash")
     text = models.TextField()
     registered_on = models.DateField(auto_now_add=True)
 
-    account_type = models.CharField(
-        max_length=1,
-        choices=ACCOUNT_TYPE_CHOICES,
-        default=ELEMENTARY,
-    )
+    account_type = models.SmallIntegerField(choices=(
+        (ELEMENTARY, "Boshlang'ich"),
+        (ADDITIONAL, "Qo'shimcha ")
+
+    ), blank=True, null=True)
 
     def __str__(self):
         return self.text   

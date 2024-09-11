@@ -49,7 +49,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="{% url 'main:index' %}">
             <strong><span>Boshlang'ich ta'limda</span> Matematika</strong>
           </a>
 
@@ -77,9 +77,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="{% url 'main:independent' %}">Mustaqil ishlar</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="test.html">Test</a>
-              </li>
+            
             </ul>
           </div>
         </div>
@@ -110,7 +108,7 @@
                 </div>
 
                 {% for i in subjects %}
-                    {% if i.account_type == "E" %}
+                    {% if i.account_type == 0 %}
                         <div class="col-lg-3 col-12 mb-3">
                             <div class="product-thumb">
                                 <img
@@ -136,7 +134,7 @@
                 
                 
                 {% for i in subjects %}
-                    {% if i.account_type == "A" %}
+                    {% if i.account_type == 1 %}
                         <div class="col-lg-3 col-12 mb-3">
                             <div class="product-thumb">
                                 <img

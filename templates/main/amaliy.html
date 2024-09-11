@@ -49,7 +49,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
 
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="{% url 'main:index' %}">
             <strong><span>Boshlang'ich ta'limda</span> Matematika</strong>
           </a>
 
@@ -110,7 +110,7 @@
                 </div>
 
                 {% for i in practical %}
-                    {% if i.account_type == "E" %}
+                    {% if i.account_type == 0 %}
                         <div class="col-lg-3 col-12 mb-3">
                             <div class="product-thumb">
                                 <img
@@ -136,7 +136,7 @@
                 
                 
                 {% for i in practical %}
-                    {% if i.account_type == "A" %}
+                    {% if i.account_type == 1 %}
                         <div class="col-lg-3 col-12 mb-3">
                             <div class="product-thumb">
                                 <img
