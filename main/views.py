@@ -6,11 +6,11 @@ from django.http import FileResponse, HttpResponse
 
 
 def index(request):
-    subject = Subject.objects.all().order_by('-id')[:3]
-    practical = Practical.objects.all().order_by('-id')[:3]
-    presentation = Presentation.objects.all().order_by('-id')[:3]
-    video = Video.objects.all().order_by('-id')[:3]
-    independent = Independent.objects.all().order_by('-id')[:3]
+    subject = Subject.objects.all()[:3]
+    practical = Practical.objects.all()[:3]
+    presentation = Presentation.objects.all()[:3]
+    video = Video.objects.all()[:3]
+    independent = Independent.objects.all()[:3]
     pdf = Pdf.objects.all()
     ctxx = {
         "subject": subject,
@@ -81,7 +81,13 @@ def video(request):
 
     return render(request, "main/videodars.html", ctx)
 
+def subject_pdf(request, id):
+    pdf = Pdf.objects.filter(subject_id=id)
+    ctx = {
+        "pdf": pdf
+    }
 
+    return render(request, 'main/pdf.html', ctx)
 
 
 

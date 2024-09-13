@@ -37,51 +37,51 @@
 <main>
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
+            <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-          <a class="navbar-brand" href="{% url 'main:index' %}">
-            <strong><span>Boshlang'ich ta'limda</span> Matematika</strong>
-          </a>
+            <a class="navbar-brand" href="{% url 'main:index' %}">
+                <strong><span>Boshlang'ich ta'limda</span> Matematika</strong>
+            </a>
 
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" href="{% url 'main:index' %}">Bosh Sahifa</a>
-              </li>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{% url 'main:index' %}">Bosh Sahifa</a>
+                    </li>
 
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'main:subject' %}">Maruza</a>
-              </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'main:subject' %}">Maruza</a>
+                    </li>
 
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'main:practical' %}">Amaliy mashg'ulot</a>
-              </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'main:practical' %}">Amaliy mashg'ulot</a>
+                    </li>
 
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'main:presentation' %}">Taqdimot</a>
-              </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'main:presentation' %}">Taqdimot</a>
+                    </li>
 
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'main:video' %}">Videodars</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'main:independent' %}">Mustaqil ishlar</a>
-              </li>
-            
-            </ul>
-          </div>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'main:video' %}">Videodars</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'main:independent' %}">Mustaqil ishlar</a>
+                    </li>
+
+                </ul>
+            </div>
         </div>
-      </nav>
+    </nav>
 
     <header
             class="site-header section__header-one section-padding d-flex justify-content-center align-items-center"
@@ -118,7 +118,9 @@
                                 />
                                 <div class="product-info d-flex">
                                     <div>
-                                        <h5 class="product-title mb-0">{{ i.name }}</h5>
+                                        <a href="{% url 'main:subject_pdf' i.id %}">
+                                            <h5 class="product-title mb-0">{{ i.name }}</h5>
+                                        </a>
                                         <p class="product-p">{{ i.text }}</p>
                                     </div>
                                 </div>
@@ -131,8 +133,8 @@
                     <h2 class="mb-5">Qo'shimcha Maruzalar</h2>
                 </div>
 
-                
-                
+
+
                 {% for i in subjects %}
                     {% if i.account_type == 1 %}
                         <div class="col-lg-3 col-12 mb-3">
@@ -144,7 +146,9 @@
                                 />
                                 <div class="product-info d-flex">
                                     <div>
-                                        <h5 class="product-title mb-0">{{ i.name }}</h5>
+                                        <a href="{% url 'main:subject_pdf' i.id %}">
+                                            <h5 class="product-title mb-0">{{ i.name }}</h5>
+                                        </a>
                                         <p class="product-p">{{ i.text }}</p>
                                     </div>
                                 </div>

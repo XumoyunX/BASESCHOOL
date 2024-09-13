@@ -114,9 +114,8 @@ class Video(models.Model):
     ELEMENTARY = 0
     ADDITIONAL = 1
 
-    video = models.FileField(upload_to='videos_uploaded')
     name = models.CharField(max_length=50, verbose_name="youtube url joylash")
-    text = models.TextField()
+    text = models.TextField(verbose_name="Nima haqida")
     registered_on = models.DateField(auto_now_add=True)
 
     account_type = models.SmallIntegerField(choices=(
@@ -139,16 +138,17 @@ class Video(models.Model):
 
  
 class Pdf(models.Model):
+    subject = models.ForeignKey(Subject, on_delete=models.CASCADE)
     pdf = models.FileField(upload_to='pdf/')
-    name = models.CharField(max_length=250)
-    
+    name = models.CharField(max_length=250, null=True, blank=True)
+
     
     class Meta:
         verbose_name = "PDF"
         verbose_name_plural = "PDFLar"
     
     def __str__(self):
-        return self.name  
+        return self.name
     
     
     
