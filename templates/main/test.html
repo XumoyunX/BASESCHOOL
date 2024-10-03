@@ -1,0 +1,163 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <meta name="description" content=""/>
+    <link rel="icon" type="image/x-icon" href="./images/ATMU LOGO 4.webp">
+
+    <title>Test</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+
+    <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap"
+            rel="stylesheet"
+    />
+
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/bootstrap-icons.css' %}" rel="stylesheet"/>
+
+    <link rel="stylesheet" href="{% static 'css/slick.css' %}"/>
+
+    <link href="{% static 'css/style.css' %}" rel="stylesheet"/>
+    <style>
+        
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .options {
+            margin-left: 20px;
+        }
+        button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+    </style>
+</head>
+<body>
+<section class="preloader">
+    <div class="spinner">
+        <span class="sk-inner-circle"></span>
+    </div>
+</section>
+
+<main>
+    {% include 'main/navbar.html' %}
+
+    <header
+            class="site-header section__header-one section-padding d-flex justify-content-center align-items-center"
+    >
+        <div class="slick-bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 col-12">
+                        <h2>
+                            <span class="d-block text-primary">Testlar</span>
+
+                        </h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="products section-padding">
+        <div class="container">
+            <div class="row">
+                {% if user.is_authenticated %}
+                    <div class="container mt-5">
+                        <h1>Test Savollari</h1>
+                        
+                        <form id="quiz-form" action="{% url 'main:submit_test' test.id %}" method="post">
+                            {% csrf_token %}
+                            {% for question in questions %}
+                                <div class="question">
+                                    <h3>{{ forloop.counter }}. {{ question.text }}</h3>
+                                    <div class="options">
+                                        {% for answer in question.answers.all %}
+                                            <label><input type="radio" name="{{ question.id }}" value="{{ answer.id }}"> {{ answer.text }}</label><br>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            {% endfor %}    
+                            
+                    
+                            <button type="submit">Javoblarni yuborish</button>
+                        </form>
+                    </div>
+                
+              
+
+                    
+                {% else %}
+
+                <div class="container mt-5">
+                    <h1>Ro'yxatdan o'tish</h1>
+                    
+                    
+                        <div class="question mt-5">
+                            <a href="{% url 'client:registration' %}">
+                                <button type="submit">Ro'yxatdan o'tish</button>
+                            </a>
+                        </div>
+                        <div class="question mt-5">
+                            <a href="{% url 'client:login' %}">
+                                <button type="submit">Tizimga kirish</button>
+                            </a>
+                        </div>
+                        <div class="question mt-5">
+                            <a href="{% url 'client:logout' %}">
+                                <button type="submit" class="btn btn-danger">Tizimga Chiqish</button>
+                            </a>
+                        </div>
+                  
+                </div>
+               
+
+                
+               
+               
+              
+               
+
+                {% endif %}
+          
+            
+            </div>
+        </div>
+    </section>
+</main>
+
+
+
+
+
+{% include 'main/footer.html' %}
+
+<!-- JAVASCRIPT FILES -->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'js/Headroom.js' %}"></script>
+<script src="{% static 'js/jQuery.headroom.js' %}"></script>
+<script src="{% static 'js/slick.min.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+</body>
+</html>

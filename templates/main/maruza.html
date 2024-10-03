@@ -35,53 +35,7 @@
 </section>
 
 <main>
-    <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <button
-                    class="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarNav"
-                    aria-controls="navbarNav"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-            >
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <a class="navbar-brand" href="{% url 'main:index' %}">
-                <strong><span>Boshlang'ich ta'limda</span> Matematika</strong>
-            </a>
-
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'main:index' %}">Bosh Sahifa</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'main:subject' %}">Maruza</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'main:practical' %}">Amaliy mashg'ulot</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'main:presentation' %}">Taqdimot</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'main:video' %}">Videodars</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'main:independent' %}">Mustaqil ishlar</a>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-    </nav>
+    {% include 'main/navbar.html' %}
 
     <header
             class="site-header section__header-one section-padding d-flex justify-content-center align-items-center"
@@ -109,23 +63,31 @@
 
                 {% for i in subjects %}
                     {% if i.account_type == 0 %}
-                        <div class="col-lg-3 col-12 mb-3">
-                            <div class="product-thumb">
-                                <img
-                                        src="{{ i.img.url }}"
-                                        class="img-fluid product-image"
-                                        alt=""
-                                />
-                                <div class="product-info d-flex">
-                                    <div>
-                                        <a href="{% url 'main:subject_pdf' i.id %}">
-                                            <h5 class="product-title mb-0">{{ i.name }}</h5>
-                                        </a>
-                                        <p class="product-p">{{ i.text }}</p>
-                                    </div>
+                    <div class="col-lg-4 col-12 mb-3">
+                        <div class="product-thumb">
+                            <img
+                                    src="{{ i.img.url }}"
+                                    class="img-fluid product-image"
+                                    alt="{{ i.name }}"
+                                    onclick="window.open('{{ i.pdf.url }}', '_blank');"
+                                  
+                            />
+                        
+                            <div>
+                                
+                            </div>
+                      
+                
+                            <div class="product-info d-flex">
+                                <div>
+                                    <a href="{% url 'main:subject_url' %}">
+                                        <h5 class="product-title mb-0">{{ i.name }}</h5>
+                                    </a>
+                                    <p class="product-p">{{ i.text }}</p>
                                 </div>
                             </div>
                         </div>
+                    </div>
                     {% endif %}
                 {% endfor %}
 
@@ -137,20 +99,27 @@
 
                 {% for i in subjects %}
                     {% if i.account_type == 1 %}
-                        <div class="col-lg-3 col-12 mb-3">
-                            <div class="product-thumb">
-                                <img
-                                        src="{{ i.img.url }}"
-                                        class="img-fluid product-image"
-                                        alt=""
-                                />
-                                <div class="product-info d-flex">
-                                    <div>
-                                        <a href="{% url 'main:subject_pdf' i.id %}">
-                                            <h5 class="product-title mb-0">{{ i.name }}</h5>
-                                        </a>
-                                        <p class="product-p">{{ i.text }}</p>
-                                    </div>
+                    <div class="col-lg-4 col-12 mb-3">
+                        <div class="product-thumb">
+                            <img
+                                    src="{{ i.img.url }}"
+                                    class="img-fluid product-image"
+                                    alt="{{ i.name }}"
+                                    onclick="window.open('{{ i.pdf.url }}', '_blank');"
+                                  
+                            />
+                        
+                            <div>
+                                
+                            </div>
+                      
+                
+                            <div class="product-info d-flex">
+                                <div>
+                                    <a href="{% url 'main:subject_url' %}">
+                                        <h5 class="product-title mb-0">{{ i.name }}</h5>
+                                    </a>
+                                    <p class="product-p">{{ i.text }}</p>
                                 </div>
                             </div>
                         </div>
@@ -161,25 +130,8 @@
     </section>
 </main>
 
-<footer class="site-footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-9 col-10 me-auto mb-4">
-                <h4 class="text-white mb-3">
-                    <a href="index.html">Boshlang'ich ta'limda</a> Matematika
-                </h4>
-            </div>
 
-            <div class="col-lg-3 col-4 mt-2">
-                <ul class="social-icon">
-                    <li><a href="#" class="social-icon-link bi-youtube"></a></li>
-                    <li><a href="#" class="social-icon-link bi-whatsapp"></a></li>
-                    <li><a href="#" class="social-icon-link bi-instagram"></a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</footer>
+{% include 'main/footer.html' %}
 
 <!-- JAVASCRIPT FILES -->
 <script src="{% static 'js/jquery.min.js' %}"></script>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+          integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+</head>
+<body>
+
+
+{% comment %} <nav class="navbar navbar-expand-lg navbar-light bg-info">
+
+<div class="container">
+    <a class="navbar-brand" href="#"  style="color: white"><b>Gag_login</b></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto">
+        {% if user.is_authenticated %}
+
+        <li class="dropdown">
+          <a href="#" data-toggle="dropdown"
+             class="nav-link dropdown-toggle nav-link-lg nav-link-user">
+              <img style="    width: 59px;
+            height: 58px;
+            border-radius: 48px;" alt="image" src="{{ request.user.avatar }}" class="user-img-radious-style">
+              <span class="d-sm-none d-lg-inline-block"></span></a>
+          <div class="dropdown-menu dropdown-menu-right pullDown">
+              <a href="{% url 'client:profile' %}" class="dropdown-item has-icon"> <i class="far
+              fa-user"></i> Profile
+              </a>
+
+              <div class="dropdown-divider"></div>
+              <a href="{% url 'client:logout' %}" class="dropdown-item has-icon text-danger"> <i
+                      class="fas fa-sign-out-alt"></i>
+                  Tizimdan chiqish
+              </a>
+          </div>
+      </li>
+
+        {% else %}
+
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'client:registration' %}"><b>Ro'yxatdan o'tish</b></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'client:login' %}"><b>Tizimdan Kirish</b></a>
+        </li>
+        {% endif %}
+      </ul>
+
+    </div>
+</div>
+  </nav> {% endcomment %}
+
+
+
+
+
+
+{% block content %}
+
+
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>

@@ -28,8 +28,33 @@
     <link rel="stylesheet" href="css/slick.css"/>
 
     <link href="{% static 'css/style.css' %}" rel="stylesheet"/>
-</head>
 
+
+
+    
+        <style>
+            .modal {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.8);
+                justify-content: center;
+                align-items: center;
+            }
+        
+            .modal img {
+                max-width: 90%;
+                max-height: 90%;
+            }
+        </style>
+
+     
+
+
+</head>
 <body>
 <section class="preloader">
     <div class="spinner">
@@ -38,53 +63,7 @@
 </section>
 
 <main>
-    <nav class="navbar navbar-expand-lg">
-        <div class="container">
-            <button
-                    class="navbar-toggler"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarNav"
-                    aria-controls="navbarNav"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation"
-            >
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <a class="navbar-brand" href="{% url 'main:index' %}">
-                <strong><span>Boshlang'ich ta'limda</span> Matematika</strong>
-            </a>
-
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="{% url 'main:index' %}">Bosh Sahifa</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'main:subject' %}">Maruza</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'main:practical' %}">Amaliy mashg'ulot</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'main:presentation' %}">Taqdimot</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'main:video' %}">Videodars</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'main:independent' %}">Mustaqil ishlar</a>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-    </nav>
+    {% include 'main/navbar.html' %}
 
     <div class="slick-custom">
         <img src="{% static 'images/bg1.webp' %}" class="img-fluid bg_img" alt=""/>
@@ -104,7 +83,9 @@
                                 href="./images/Komolov H.pdf"
                                 class="btn custom-btn"
                                 download=""
+                                onclick="window.open('{% static 'images/rasm.pdf' %}', '_blank');"
                         >Ustoz Haqida</a
+
                         >
                     </div>
                 </div>
@@ -124,12 +105,19 @@
                             <img
                                     src="{{ i.img.url }}"
                                     class="img-fluid product-image"
-                                    alt=""
+                                    alt="{{ i.name }}"
+                                    onclick="window.open('{{ i.pdf.url }}', '_blank');"
+                                  
                             />
-
+                        
+                            <div>
+                                
+                            </div>
+                      
+                
                             <div class="product-info d-flex">
                                 <div>
-                                    <a href="{% url 'main:subject_pdf' i.id %}">
+                                    <a href="{% url 'main:subject_url' %}">
                                         <h5 class="product-title mb-0">{{ i.name }}</h5>
                                     </a>
                                     <p class="product-p">{{ i.text }}</p>
@@ -141,8 +129,8 @@
 
 
                 <div class="col-12 text-center mb-5">
-                    <a href="{% url 'main:subject' %}" class="view-all">Barcha Maruzala</a>
-                </div>
+                    <a href="{% url 'main:subject_url' %}" class="view-all">Barcha Maruzala</a>
+                </div> 
             </div>
         </div>
     </section>
@@ -157,10 +145,12 @@
                     <div class="col-lg-4 col-12 mb-3">
                         <div class="product-thumb">
                             <img
-                                    src="{{ i.img.url }}"
-                                    class="img-fluid product-image"
-                                    alt=""
-                            />
+                            src="{{ i.img.url }}"
+                            class="img-fluid product-image"
+                            alt="{{ i.name }}"
+                            onclick="window.open('{{ i.img.url }}', '_blank');"
+                          
+                    />
 
                             <div class="product-info d-flex">
                                 <div>
@@ -253,6 +243,8 @@
                 <div class="col-12 text-center mt-5">
                     <h2 class="mb-5">Mustaqil ish</h2>
                 </div>
+
+
                 {% for i in independent %}
                     <div class="col-lg-4 col-12 mb-3">
                         <div class="product-thumb">
@@ -283,25 +275,42 @@
 </main>
 
 
-<footer class="site-footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-9 col-10 me-auto mb-4">
-                <h4 class="text-white mb-3">
-                    <a href="index.html">Boshlang'ich ta'limda</a> Matematika
-                </h4>
-            </div>
 
-            <div class="col-lg-3 col-4 mt-2">
-                <ul class="social-icon">
-                    <li><a href="#" class="social-icon-link bi-youtube"></a></li>
-                    <li><a href="#" class="social-icon-link bi-whatsapp"></a></li>
-                    <li><a href="#" class="social-icon-link bi-instagram"></a></li>
-                </ul>
-            </div>
-        </div>
+
+
+
+{% include 'main/footer.html' %}
+
+
+
+{% comment %} {% for i in practical %}
+<div class="thumbnail-container">
+    <div class="modal" style="display: none;" onclick="closeModal(this)">
+        <img src="{{ i.img.url }}" alt="">
     </div>
-</footer>
+</div>
+{% endfor %} {% endcomment %}
+
+
+
+
+
+
+<script>
+    const thumbnails = document.querySelectorAll('.thumbnail');
+    const modals = document.querySelectorAll('.modal');
+
+    thumbnails.forEach((thumbnail, index) => {
+        thumbnail.addEventListener('click', function() {
+            modals[index].style.display = 'flex';
+        });
+    });
+
+    function closeModal(modal) {
+        modal.style.display = 'none';
+    }
+</script>
+
 
 <script src="{% static 'js/jquery.min.js' %}"></script>
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
@@ -309,5 +318,6 @@
 <script src="{% static 'js/jQuery.headroom.js' %}"></script>
 <script src="{% static 'js/slick.min.js' %}"></script>
 <script src="{% static  'js/custom.js' %}"></script>
+
 </body>
 </html>
