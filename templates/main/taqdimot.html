@@ -58,7 +58,7 @@
         <div class="container">
           <div class="row">
             <div class="col-12">
-              <h2 class="mb-5 mt-4">Boshlang'ich Taqdimotlar</h2>
+              <h2 class="mb-5 mt-4">Boshlang'ich amaliy mashg'ulotlar</h2>
             </div>
 
             {% for i in presentation %}
@@ -68,7 +68,8 @@
                           <img
                                   src="{{ i.img.url }}"
                                   class="img-fluid product-image"
-                                  alt=""
+                                  alt="rasm/pdf"
+                                  onclick="window.open('{{ i.pdf.url }}', '_blank');"
                           />
                           <div class="product-info d-flex">
                               <div>
@@ -83,7 +84,7 @@
            
 
             <div class="col-12">
-              <h2 class="mb-5">Qo'shimcha Taqdimotlar</h2>
+              <h2 class="mb-5">Qo'shimcha amaliy mashg'ulotlar</h2>
             </div>
 
 
@@ -94,7 +95,8 @@
                           <img
                                   src="{{ i.img.url }}"
                                   class="img-fluid product-image"
-                                  alt=""
+                                  alt="rasm/pdf"
+                                  onclick="window.open('{{ i.pdf.url }}', '_blank');"
                           />
                           <div class="product-info d-flex">
                               <div>

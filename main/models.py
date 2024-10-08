@@ -95,6 +95,7 @@ class Presentation(models.Model):
     img = models.ImageField(upload_to='img/')
     name = models.CharField(max_length=50)
     text = models.TextField()
+    pdf = models.FileField(upload_to='pdf/')
     registered_on = models.DateField(auto_now_add=True)
 
     account_type = models.SmallIntegerField(choices=(

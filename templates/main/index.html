@@ -80,11 +80,10 @@
                         </p>
 
                         <a
-                                href="./images/Komolov H.pdf"
+                                href="{% static 'images/rasm.pdf' %}"
                                 class="btn custom-btn"
                                 download=""
-                                onclick="window.open('{% static 'images/rasm.pdf' %}', '_blank');"
-                        >Ustoz Haqida</a
+                                onclick="window.open('{% static 'images/rasm.pdf' %}', '_blank');">Ustoz Haqida</a
 
                         >
                     </div>
@@ -182,7 +181,8 @@
                             <img
                                     src="{{ i.img.url }}"
                                     class="img-fluid product-image"
-                                    alt=""
+                                    alt="rasm/pdf"
+                                    onclick="window.open('{{ i.pdf.url }}', '_blank');"
                             />
 
                             <div class="product-info d-flex">
